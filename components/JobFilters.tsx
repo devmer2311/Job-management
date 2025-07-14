@@ -123,14 +123,14 @@ export default function JobFilters({ filters, onFiltersChange }: JobFiltersProps
 {/* Salary Range */}
 <div className="flex items-center gap-4 min-w-[300px]">
   <span className="text-sm text-gray-700 whitespace-nowrap">Salary Per Month</span>
-  <span className="text-sm text-gray-600">₹{(filters.salary_min / 1000).toFixed(0)}k</span>
+  <span className="text-sm text-gray-600">₹{((filters.salary_min || 50000) / 1000).toFixed(0)}k</span>
 
   <div className="w-64">
     <Range
       min={0}
       max={500000}
       step={5000}
-      value={[filters.salary_min, filters.salary_max]}
+      value={[filters.salary_min || 50000, filters.salary_max || 800000]}
       onChange={([min, max]) =>
         onFiltersChange({ ...filters, salary_min: min, salary_max: max })
       }
@@ -142,7 +142,7 @@ export default function JobFilters({ filters, onFiltersChange }: JobFiltersProps
     />
   </div>
 
-  <span className="text-sm text-gray-600">₹{(filters.salary_max / 1000).toFixed(0)}k</span>
+  <span className="text-sm text-gray-600">₹{((filters.salary_max || 800000) / 1000).toFixed(0)}k</span>
 </div>
 
       </div>
